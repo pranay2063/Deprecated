@@ -35,7 +35,7 @@ WRITE:/70 '3. FUNCTION MODULE '.
       WHEN '1'.
         CALL TRANSACTION 'SE11'.
 
-        WHEN '2'.
+        WHEN '2'. 
           CALL TRANSACTION 'SE38'.
 
           WHEN '3'.
