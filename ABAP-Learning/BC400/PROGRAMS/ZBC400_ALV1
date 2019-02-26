@@ -62,4 +62,4 @@ SELECT * FROM SFLIGHT INTO TABLE IT_SFLIGHT.
             .
   IF SY-SUBRC <> 0.
 * Implement suitable error handling here
-  ENDIF.
+  ENDIF. 
