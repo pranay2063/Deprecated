@@ -1,1 +1,1 @@
-# DBMS
+# A portal for computer science 
