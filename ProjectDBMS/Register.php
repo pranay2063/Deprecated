@@ -32,7 +32,7 @@
 					 
 					 //if(empty($user_name))        $user_name="";
 					 //if(empty($user_address))     $user_address="";
-					 //if(empty($user_contact_no))  $user_contact_no="";
+					 //if(empty($user_contact_no))  $user_contact_no=""; 
 					 
 					 $sql="SELECT * FROM USERS WHERE user_handle='".$user_handle."' AND user_password='".$user_password."'    
 					       LIMIT 1";   
