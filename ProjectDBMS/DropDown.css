@@ -29,7 +29,7 @@ body {
 {  
     transition:all linear 0.22s;
     color:#919191;
-   vlink text-decoration:none;
+   vlink text-decoration:none; 
 }
  
 .menu li:hover > a, .menu .current-item > a {
