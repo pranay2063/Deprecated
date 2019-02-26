@@ -30,7 +30,7 @@ TYPES: BEGIN OF GTY_EMPLOYEE,
        IT_EMP-ENAME = 'KING'.
        IT_EMP-JOB = 'CLERK'.
        IT_EMP-SALARY = '5000.00'.
-       APPEND  IT_EMP.
+       APPEND  IT_EMP. 
 
        IT_EMP-EMPNO = 3.
        IT_EMP-ENAME = 'MILLER'.
