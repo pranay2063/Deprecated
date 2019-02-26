@@ -21,5 +21,5 @@ PORTB=ADC1BUF0;
 
 return 0;
 
-}
+} 
 
