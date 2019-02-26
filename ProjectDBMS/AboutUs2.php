@@ -36,7 +36,7 @@
                 </ul>
              </li>    
 
-            <li class="current-item"><a href="#">ABOUT US</a></li>
+            <li class="current-item"><a href="#">ABOUT US</a></li> 
         </ul>
     </nav>
 </div>
