@@ -33,7 +33,7 @@
 		if(!empty($_POST['date']))
 		{
 		
-			$date=mysqli_real_escape_string($conn,$_POST['date']);
+			$date=mysqli_real_escape_string($conn,$_POST['date']); 
 			
 			//$date=DATE_FORMAT($date,'%y-%m-%d');
 			
