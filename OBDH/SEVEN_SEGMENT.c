@@ -30,7 +30,7 @@ void counter(int a)
           
 }
 
-int main()
+int main() 
 {
 
     int i;
