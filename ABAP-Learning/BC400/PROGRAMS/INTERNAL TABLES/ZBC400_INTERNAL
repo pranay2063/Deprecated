@@ -21,3 +21,4 @@ DO 10 TIMES.
     WRITE:/ WA.
 
     ENDLOOP.
+ 
