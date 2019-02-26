@@ -35,7 +35,7 @@
 		
 		session_destroy();
 		
-		header('Location: http://localhost/DW/START.php');
+		header('Location: http://localhost/DW/START.php'); 
 		
 		exit();
 			
