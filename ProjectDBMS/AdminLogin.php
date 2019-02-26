@@ -33,7 +33,7 @@
 					
 					session_start();
 					
-					$_SESSION['start']=1;
+					$_SESSION['start']=1; 
 					
 					//echo "vlskfgk";
 					
