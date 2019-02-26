@@ -30,3 +30,4 @@ CASE CH.
                 WRITE:/ 'CONSONANT'.
 
                 ENDCASE.
+ 
