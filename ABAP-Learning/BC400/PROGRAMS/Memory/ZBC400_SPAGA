@@ -26,7 +26,7 @@ ULINE.
 
 
       SELECT * FROM KNA1.
-
+ 
         WRITE:/1 KNA1-KUNNR HOTSPOT COLOR 5,
       20 SY-VLINE,
       22 KNA1-NAME1,
