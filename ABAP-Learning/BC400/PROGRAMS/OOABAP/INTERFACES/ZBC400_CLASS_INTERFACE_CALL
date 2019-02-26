@@ -20,3 +20,4 @@ CREATE OBJECT ZC.
 
 CALL METHOD: ZC->B,
              ZC->A.
+ 
