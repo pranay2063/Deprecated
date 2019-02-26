@@ -33,7 +33,7 @@
 	{
 		
 	
-		if(!empty($_POST['query']) && !empty($_POST['user_handle']))
+		if(!empty($_POST['query']) && !empty($_POST['user_handle'])) 
 		{
 			
 			$query=mysqli_real_escape_string($conn,$_POST['query']);
