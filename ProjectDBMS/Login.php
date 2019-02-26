@@ -34,7 +34,7 @@
 		
 				  //echo "You have successfully logged in";
 				  
-				  session_start();
+				  session_start(); 
 				  
 				  $_SESSION['start']=$user_handle;
 				  
