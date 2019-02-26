@@ -34,7 +34,7 @@
 	 $sql="SELECT COUNT(*) AS d FROM COURSES";
 	 $res=mysqli_query($conn,$sql);
 			 
-	 foreach($res as $r)
+	 foreach($res as $r) 
 	 $temp2=$r;
 	 
 	 if(isset($_POST['submit2']))
