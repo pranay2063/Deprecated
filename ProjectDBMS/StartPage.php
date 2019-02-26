@@ -32,7 +32,7 @@
 		  		if(mysqli_num_rows($res)==0)
 		  		{
 			  
-			 		 echo "NO RESULTS";
+			 		 echo "NO RESULTS"; 
 			  		 exit();
 			    
 		  		}
