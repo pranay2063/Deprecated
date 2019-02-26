@@ -32,7 +32,7 @@ ULINE.
 WRITE:/1  'CUSTOMER NUMBER ',
       20 'CUSTOMER NAME ',
       60 'CITY ',
-      120 'COUNTRY '.
+      120 'COUNTRY '. 
 
 ULINE.
 
