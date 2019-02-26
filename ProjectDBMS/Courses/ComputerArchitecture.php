@@ -5,7 +5,7 @@
 	if(!isset($_SESSION['start']))
 	{
 		
-		header('Location: http://localhost/DW/LOGIN.php');		
+		header('Location: http://localhost/DW/LOGIN.php');	 	
 		exit();
 		
 	}
