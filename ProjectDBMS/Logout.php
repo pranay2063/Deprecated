@@ -27,7 +27,7 @@
 	
 	$temp=$_SESSION['start'];
 	
-    if(isset($_POST['logout']))
+    if(isset($_POST['logout'])) 
 	{   
 	   
 		if(isset($_SESSION['start']))
