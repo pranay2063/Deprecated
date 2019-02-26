@@ -36,7 +36,7 @@ CLASS lcl_test IMPLEMENTATION.
 DATA: o_cut TYPE REF TO lcl_sum.
     DATA: lv_result TYPE i.
 *
-    CREATE OBJECT o_cut.
+    CREATE OBJECT o_cut. 
     lv_result = o_cut->sum( 3 ).
 *
     cl_aunit_assert=>assert_equals(
