@@ -21,4 +21,4 @@ IF SALARY >= 8000 AND SALARY <= 10000.
         WRITE:/ 'D GRADE OFFICR'.
         ELSE.
           WRITE:/ 'INVLID SALARY'.
-          ENDIF.
+          ENDIF. 
