@@ -1,0 +1,121 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_INTERACTIVE1
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_INTERACTIVE1 NO STANDARD PAGE HEADING.
+
+TABLES: KNA1,
+        VBAK,
+        VBAP.
+
+PARAMETERS: P_LAND1 LIKE KNA1-LAND1.
+
+DEFINE DT.
+
+  WRITE:/150 'DATE : ', SY-DATUM.
+  WRITE:/150 'TIME : ', SY-UZEIT.
+  ULINE.
+  WRITE:/75 'CUSTOMER WISE SALES ORDERS ' COLOR 3.
+  ULINE.
+
+  END-OF-DEFINITION.
+
+
+  DT.
+
+  WRITE:/1 'CUSTOMER NUMBER ' COLOR 1,
+        20 SY-VLINE,
+        22 'CUSTOMER NAME ' COLOR 1,
+        80 SY-VLINE,
+        82 'CITY ' COLOR 1,
+        140 SY-VLINE,
+        142 'COUNTRY ' COLOR 1.
+  ULINE.
+
+
+  SELECT * FROM KNA1 WHERE LAND1 = P_LAND1
+    ORDER BY KUNNR .
+
+  WRITE:/1 KNA1-KUNNR HOTSPOT COLOR 1,
+        20 SY-VLINE,
+        22 KNA1-NAME1,
+        80 SY-VLINE,
+        82 KNA1-ORT01,
+        140 SY-VLINE,
+        142 KNA1-LAND1.
+
+  HIDE KNA1-KUNNR.
+  CLEAR KNA1.
+
+  ENDSELECT.
+
+  ULINE.
+
+
+  AT LINE-SELECTION.
+
+    CASE SY-LSIND.
+
+      WHEN '1'.
+
+        DT.
+
+
+        WRITE:/1 'SALES ORDER NUMBER ' COLOR 3,
+        20 SY-VLINE,
+        22 'SALES ORDER DATE  ' COLOR 3,
+        80 SY-VLINE,
+        82 'SALES ORDER DOCUMENT CATEGORY ' COLOR 3,
+        140 SY-VLINE,
+        142 'SALES DOCUMENT TYPE ' COLOR 3.
+  ULINE.
+
+
+SELECT * FROM VBAK WHERE KUNNR = KNA1-KUNNR.
+
+        WRITE:/1 VBAK-VBELN HOTSPOT COLOR 3,
+        20 SY-VLINE,
+        22 VBAK-ERDAT,
+        80 SY-VLINE,
+        82 VBAK-VBTYP,
+        140 SY-VLINE,
+        142 VBAK-AUART.
+
+HIDE VBAK-VBELN.
+CLEAR VBAK.
+
+  ENDSELECT.
+
+  ULINE.
+
+WHEN '2'.
+
+  DT.
+
+        WRITE:/1 'ITEM NUMBER ' COLOR 7,
+        20 SY-VLINE,
+        22 'MATERIAL NUMBER  ' COLOR 7,
+        80 SY-VLINE,
+        82 'MATERIAL NAME ' COLOR 7,
+        140 SY-VLINE,
+        142 'PRICE ' COLOR 7.
+  ULINE.
+
+
+SELECT * FROM VBAP WHERE VBELN = VBAK-VBELN.
+
+
+        WRITE:/1 VBAP-POSNR,
+        20 SY-VLINE,
+        22 VBAP-MATNR,
+        80 SY-VLINE,
+        82 VBAP-ARKTX,
+        140 SY-VLINE,
+        142 VBAP-NETWR.
+
+  ENDSELECT.
+
+  ULINE.
+
+  ENDCASE.

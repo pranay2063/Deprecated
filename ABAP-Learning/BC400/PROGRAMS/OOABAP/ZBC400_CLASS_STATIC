@@ -1,0 +1,54 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_STATIC
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_STATIC.
+
+
+CLASS ZCL_ADD_STATIC DEFINITION.
+
+
+  PUBLIC SECTION.
+
+  CLASS-METHODS: GET_DATA,
+           DISPLAY_dATA.
+
+
+  PRIVATE SECTION.
+
+  CLASS-DATA: N1 TYPE I VALUE 50,
+              N2 TYPE I VALUE 100,
+              RESULT TYPE I.
+
+
+
+
+  ENDCLASS.
+
+
+
+  CLASS ZCL_ADD_STATIC IMPLEMENTATION.
+
+
+    METHOD GET_dATA.
+
+      RESULT = N1 + N2.
+
+      ENDMETHOD.
+
+
+      METHOD DISPLAY_dATA.
+
+        WRITE:/ 'THE SUM OF 2 NUMBERS IS ', RESULT.
+
+        ENDMETHOD.
+
+        ENDCLASS.
+
+
+
+        START-OF-SELECTION.
+
+        CALL METHOD ZCL_ADD_STATIC=>GET_DATA.
+        CALL METHOD ZCL_ADD_STATIC=>DISPLAY_DATA.

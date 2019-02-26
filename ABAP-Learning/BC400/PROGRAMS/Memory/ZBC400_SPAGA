@@ -1,0 +1,42 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_SPAGPA
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_SPAGPA NO STANDARD PAGE HEADING.
+
+
+TABLES: KNA1.
+
+WRITE:/150 'DATE : ', SY-DATUM.
+WRITE:/150 'TIME : ', SY-UZEIT.
+ULINE.
+
+WRITE:/80 'CUSTOMER DETAILS ' COLOR 5.
+ULINE.
+WRITE:/1 'CUSTOMER NUMBER ' COLOR 5,
+      20 SY-VLINE,
+      22 'CUSTOMER NAME ' COLOR 5,
+      80 SY-VLINE,
+      82 'CITY ' COLOR 5,
+      140 SY-VLINE,
+      142 'COUNTRY ' COLOR 5.
+ULINE.
+
+
+
+      SELECT * FROM KNA1.
+
+        WRITE:/1 KNA1-KUNNR HOTSPOT COLOR 5,
+      20 SY-VLINE,
+      22 KNA1-NAME1,
+      80 SY-VLINE,
+      82 KNA1-ORT01,
+      140 SY-VLINE,
+      142 KNA1-LAND1.
+
+        ENDSELECT.
+
+
+        SET PARAMETER ID 'KUN' FIELD KNA1-KUNNR.
+        CALL TRANSACTION 'XD03'.

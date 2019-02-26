@@ -1,0 +1,83 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_JOIN
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_JOIN NO STANDARD PAGE HEADING LINE-SIZE 300.
+
+PARAMETERS: P_CARRID LIKE SPFLI-CARRID.
+
+TYPES: BEGIN OF GTY_FLIGHT,
+       CARRID TYPE SPFLI-CARRID,
+       CONNID TYPE SPFLI-CONNID,
+       AIRPFROM TYPE SPFLI-AIRPFROM,
+       AIRPTO TYPE SPFLI-AIRPTO,
+       CITYFROM TYPE SPFLI-CITYFROM,
+       CITYTO TYPE SPFLI-CITYTO,
+       COUNTRYFR TYPE SPFLI-COUNTRYFR,
+       COUNTRYTO TYPE SPFLI-COUNTRYTO,
+       FLDATE TYPE SFLIGHT-FLDATE,
+       PRICE TYPE SFLIGHT-PRICE,
+       CARRNAME TYPE SCARR-CARRNAME,
+       URL TYPE SCARR-URL,
+       END OF GTY_FLIGHT.
+
+       DATA: DT_FLIGHT TYPE GTY_FLIGHT.
+
+       DATA: IT_FLIGHT LIKE STANDARD TABLE OF DT_FLIGHT.
+
+
+
+TOP-OF-PAGE.
+
+          WRITE:/130 'DATE : ', SY-DATUM.
+          WRITE:/130 'TIME : ', SY-UZEIT.
+          ULINE.
+          WRITe:/80 'FLIGHT DETAILS ' COLOR 4.
+          ULINE.
+           WRITE:/1 'CARRID' COLOR 7,
+           20 'CONNID',
+           40 'AIRPFROM',
+           60 'AIRPTO',
+           80 'CITYFROM',
+           100 'CITYTO',
+           120 'COUNTRYFR',
+           140 'COUNTRYTO',
+           160 'FLDATE',
+           180 'PRICE',
+           200 'CARRNAME',
+           220 'URL'.
+ULINE.
+
+
+START-OF-SELECTION.
+
+SELECT A~CARRID A~CONNID A~AIRPFROM A~AIRPTO
+              A~CITYFROM A~CITYTO A~COUNTRYFR A~COUNTRYTO
+              B~FLDATE B~PRICE
+              C~CARRNAME C~URL INTO CORRESPONDING FIELDS OF
+              TABLE IT_FLIGHT FROM
+             ( ( SPFLI AS A JOIN SFLIGHT AS B ON A~CARRID = B~CARRID )
+                             JOIN SCARR AS C ON B~CARRID = C~CARRID )
+         WHERE A~CARRID = P_CARRID.
+
+
+         LOOP AT IT_FLIGHT INTO DT_FLIGHT.
+
+
+           WRITE:/1 DT_FLIGHT-CARRID COLOR 7,
+           20 DT_FLIGHT-CONNID,
+           40 DT_FLIGHT-AIRPFROM,
+           60 DT_FLIGHT-AIRPTO,
+           80 DT_FLIGHT-CITYFROM,
+           100 DT_FLIGHT-CITYTO,
+           120 DT_FLIGHT-COUNTRYFR,
+           140 DT_FLIGHT-COUNTRYTO,
+           160 DT_FLIGHT-FLDATE,
+           180 DT_FLIGHT-PRICE,
+           200 DT_FLIGHT-CARRNAME,
+           220 DT_FLIGHT-URL.
+
+           ENDLOOP.
+
+           ULINE.

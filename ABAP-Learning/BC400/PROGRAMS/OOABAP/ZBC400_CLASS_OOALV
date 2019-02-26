@@ -1,0 +1,61 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_OO_ALV
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_OO_ALV.
+
+DATA: OK_CODE LIKE SY-UCOMM.
+
+DATA: IT_SFLIGHT LIKE TABLE OF SFLIGHT,
+      WA_SFLIGHT LIKE SFLIGHT.
+
+DATA: R_CONTAINER TYPE REF TO CL_GUI_CUSTOM_CONTAINER,
+      R_GRID TYPE REF TO CL_GUI_ALV_GRID.
+
+SELECT * FROM SFLIGHT INTO TABLE IT_SFLIGHT.
+  CALL SCREEN 100.
+
+*&---------------------------------------------------------------------*
+*&      Module  LIST  OUTPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE LIST OUTPUT.
+
+CREATE OBJECT R_CONTAINER
+EXPORTING
+CONTAINER_NAME = 'CONTAINER'.
+
+
+CREATE OBJECT R_GRID
+EXPORTING
+I_PARENT = R_CONTAINER.
+
+CALL METHOD R_GRID->SET_TABLE_FOR_FIRST_DISPLAY
+EXPORTING
+  I_STRUCTURE_NAME = 'SFLIGHT'
+  CHANGING
+    IT_OUTTAB = IT_SFLIGHT.
+
+
+ENDMODULE.
+*&---------------------------------------------------------------------*
+*&      Module  USER_COMMAND_0100  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+
+AT USER-COMMAND.
+
+MODULE USER_COMMAND_0100 INPUT.
+
+CASE OK_CODE.
+
+  WHEN 'EXIT'.
+    LEAVE TO SCREEN 0.
+
+    ENDCASE.
+
+
+ENDMODULE.

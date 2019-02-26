@@ -1,0 +1,32 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_FLIGHT_DETAILS
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_FLIGHT_DETAILS.
+
+TYPES: GTY_FLIGHT TYPE ZFLIGHT_STRU.
+
+DATA: DT_FLIGHT TYPE GTY_FLIGHT.
+
+DATA: IT_FLIGHT LIKE STANDARD TABLE OF DT_FLIGHT.
+
+
+SELECT A~CARRID
+A~CONNID
+A~COUNTRYFR
+A~CITYFROM
+A~AIRPFROM
+A~COUNTRYTO
+A~CITYTO
+A~AIRPTO
+A~FLTIME
+A~DEPTIME
+A~ARRTIME
+B~FLDATE
+C~CARRNAME
+C~URL
+  INTO CORRESPONDING FIELDS OF TABLE IT_FLIGHT
+  FROM ( ( SPFLI AS A INNER JOIN SFLIGHT AS B
+  ON A~CARRID = B~CARRID )
+   INNER JOIN SCARR AS C  ON B~CARRID = C~CARRID ) .

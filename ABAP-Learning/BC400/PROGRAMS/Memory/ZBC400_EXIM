@@ -1,0 +1,18 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_EXIM
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_EXIM.
+
+DATA: NAME1(10) TYPE C VALUE 'JAMES',
+      NAME2(10).
+
+
+WRITe:/ 'NAME1 = ', NAME1.
+SKIP 2.
+EXPORT NAME1 TO MEMORY ID 'ABC'.
+
+IMPORT NAME1 TO NAME2 FROM MEMORY ID 'ABC' .
+
+WRITE:/ 'NAME2 = ', NAME2.

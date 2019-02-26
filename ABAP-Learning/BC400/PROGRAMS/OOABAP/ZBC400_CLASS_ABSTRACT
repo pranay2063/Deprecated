@@ -1,0 +1,50 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_ABSTRCT
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_ABSTRCT.
+
+
+CLASS ZCL_SUPER DEFINITION ABSTRACT.
+
+  PUBLIC SECTION.
+
+  DATA: V_ABS TYPE STRING.
+  METHODS: M_ABS ABSTRACT.
+
+  ENDCLASS.
+
+
+  CLASS ZCL_SUPER IMPLEMENTATION.
+
+
+      ENDCLASS.
+
+
+
+    CLASS ZCL_SUB DEFINITION INHERITING FROM ZCL_SUPER.
+
+      PUBLIC SECTION.
+
+      METHODS: M_ABS REDEFINITION.
+
+      ENDCLASS.
+
+
+      CLASS ZCL_SUB IMPLEMENTATION.
+
+       METHOD M_ABS.
+         V_ABS = 'THIS IS ABSTRACT METHOD '.
+         WRITE:/ V_ABS.
+       ENDMETHOD.
+
+      ENDCLASS.
+
+
+    DATA: ZC TYPE REF TO ZCL_SUB.
+    START-OF-SELECTION.
+
+    CREATE OBJECT ZC.
+
+    CALL METHOD ZC->M_ABS .

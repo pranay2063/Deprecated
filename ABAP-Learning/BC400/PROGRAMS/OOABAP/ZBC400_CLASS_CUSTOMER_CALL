@@ -1,0 +1,22 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_CUSTOMER_CALL
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_CUSTOMER_CALL.
+
+DATA: KNA1 TYPE KNA1.
+
+SELECT-OPTIONS: S_KUNNR FOR KNA1-KUNNR.
+
+DATA: ZC TYPE REF TO ZCL_CUSTOMER_DATA.
+
+START-OF-SELECTION.
+
+CREATE OBJECT ZC.
+
+ZC->S_KUNNR_LOW = S_KUNNR-LOW.
+ZC->S_KUNNR_HIGH = S_KUNNR-HIGH.
+
+CALL METHOD ZC->SELECT_DATA.
+CALL METHOD ZC->DISPLAY_DATA.

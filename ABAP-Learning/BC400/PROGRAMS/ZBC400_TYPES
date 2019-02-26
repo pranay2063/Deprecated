@@ -1,0 +1,25 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_TYPES
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_TYPES.
+
+TYPES: GTY_EMPNO(4) TYPE N,
+       GTY_ENAME(15),
+       GTY_JOB(15),
+       GTY_SALARY TYPE P DECIMALS 2.
+
+
+DATA: DT_EMPNO TYPE GTY_EMPNO,
+      DT_ENAME TYPE GTY_ENAME,
+      DT_JOB TYPE GTY_JOB,
+      DT_SALARY TYPE GTY_SALARY.
+
+DT_EMPNO = 1.
+DT_ENAME = 'JAMES'.
+DT_JOB = 'MANAGER'.
+DT_SALARY = '9000.00'.
+
+
+WRITE:/ DT_EMPNO, DT_ENAME, DT_JOB, DT_SALARY.

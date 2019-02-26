@@ -1,0 +1,22 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_SYST
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_SYST.
+
+"TABLES: SYST.
+
+WRITE:/ 'CURRENT DATE :', SY-DATUM.
+WRITE:/ 'CURRENT TIME : ', SY-UZEIT.
+WRITE:/ 'TCODE : ', SY-TCODE.
+WRITE:/ 'LANGUAGE : ', SY-LANGU.
+WRITE:/ 'CLIENT NUMBER : ', SY-MANDT.
+WRITE:/ 'ULINE : ', SY-ULINE.
+WRITE:/ 'VLINE : ', SY-VLINE.
+WRITE:/ 'REPORT NAME ', SY-REPID.
+WRITE:/ 'CURRENT PROGRAM : ', SY-CPROG.
+WRITE:/ 'SY-INDEX ' , SY-INDEX.
+WRITE:/ 'NUMBER OF RECORDS ', SY-DBCNT.
+WRITE:/ 'PAGE NUMBER : ', SY-PAGNO.
+WRITE:/ 'SY-SUBRC : ', SY-SUBRC.

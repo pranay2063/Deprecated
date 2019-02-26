@@ -1,0 +1,69 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_SINGLETON
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_SINGLETON.
+
+TABLES: SPFLI.
+
+PARAMETERS: P_CARRID TYPE SPFLI-CARRID.
+
+DATA: BEGIN OF FLIGHT,
+      CARRID TYPE SPFLI-CARRID,
+      CONNID TYPE SPFLI-CONNID,
+      AIRPFROM TYPE SPFLI-AIRPFROM,
+      AIRPTO TYPE SPFLI-AIRPTO,
+      CITYFROM TYPE SPFLI-CITYFROM,
+  CITYTO TYPE SPFLI-CITYTO,
+  COUNTRYFR TYPE SPFLI-COUNTRYFR,
+  COUNTRYTO TYPE SPFLI-COUNTRYTO,
+  END OF FLIGHT.
+
+  DATA: IT_FLIGHT LIKE TABLE OF FLIGHT,
+        WA LIKE FLIGHT.
+
+  CLASS ZCL_FLIGHT DEFINITION CREATE PRIVATE.
+
+    PUBLIC SECTION.
+    METHODS: GET_DATA.
+    CLASS-METHODS: DISPLAY_DATA.
+
+    ENDCLASS.
+
+
+    CLASS ZCL_FLIGHT IMPLEMENTATION.
+
+      METHOD GET_DATA.
+
+        SELECT * FROM SPFLI INTO CORRESPONDING FIELDS OF
+          TABLE IT_FLIGHT WHERE CARRID EQ P_CARRID.
+
+          LOOP AT IT_FLIGHT INTO WA.
+
+            WRITE:/ WA-CARRID,
+            WA-CONNID,
+            WA-AIRPFROM,
+            WA-AIRPTO,
+            WA-CITYFROM,
+            WA-CITYTO,
+            WA-COUNTRYFR,
+            WA-COUNTRYTO.
+
+            ENDLOOP.
+
+            ENDMETHOD.
+
+
+            METHOD DISPLAY_DATA.
+              DATA: C1 TYPE REF TO ZCL_FLIGHT.
+              CREATE OBJECT C1.
+              CALL METHOD C1->GET_DATA.
+            ENDMETHOD.
+
+            ENDCLASS.
+
+
+            START-OF-SELECTION.
+
+            CALL METHOD ZCL_FLIGHT=>DISPLAY_DATA.

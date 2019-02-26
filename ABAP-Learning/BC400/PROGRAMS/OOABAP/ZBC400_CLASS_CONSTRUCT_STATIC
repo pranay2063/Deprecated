@@ -1,0 +1,34 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_CONSTRUCT_STATIC
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_CONSTRUCT_STATIC.
+
+
+CLASS ZCL_STATIC DEFINITION.
+
+  PUBLIC SECTION.
+
+  CLASS-DATA: V_TXT TYPE STRING VALUE 'THIS IS CLASS CONSTRUCTOR '.
+  CLASS-METHODS: CLASS_CONSTRUCTOR.
+
+  ENDCLASS.
+
+
+  CLASS ZCL_STATIC IMPLEMENTATION.
+
+    METHOD CLASS_CONSTRUCTOR.
+
+      WRITE:/ 'TODAY''S  DATE : ', SY-DATUM.
+      WRITE:/ 'TODAY''S  TIME : ', SY-UZEIT.
+      ULINE.
+
+      ENDMETHOD.
+
+      ENDCLASS.
+
+
+      START-OF-SELECTION.
+
+      WRITe:/ ZCL_STATIC=>V_TXT.

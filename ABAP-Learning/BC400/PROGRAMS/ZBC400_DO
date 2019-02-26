@@ -1,0 +1,49 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_DO
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_DO.
+
+*
+*DO 10 TIMES.
+*
+*  WRITE:/ SY-INDEX.
+*
+*  ENDDO.
+
+*
+DATA: NO TYPE I.
+
+DO 10 TIMES.
+  NO = NO + 1.
+  WRITE:/ NO.
+  ENDDO.
+
+
+*
+*DATA: NO TYPE I.
+*
+*DO 10 TIMES.
+*
+*IF NO >= 5.
+*  EXIT.
+*  NO = NO + 1.
+*  WRITE:/ NO.
+*ENDIF.
+*
+*  ENDDO.
+*
+
+*
+*DATA: NO TYPE I.
+*
+*DO 10 TIMES.
+*
+*IF NO <= 5.
+*  NO = NO + 1.
+*  WRITE:/ NO.
+*  CONTINUE.
+*ENDIF.
+*
+*  ENDDO.

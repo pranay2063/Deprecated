@@ -1,0 +1,20 @@
+*&---------------------------------------------------------------------*
+*& Subroutinenpool  ZBC400_ESR
+*&
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+PROGRAM ZBC400_ESR.
+
+
+FORM HELLO.
+WRITE:/ 'WELCOME TO EXTERNAL SUBROUTINES '.
+ULINE.
+ENDFORM.
+
+FORM DT.
+  WRITE:/ 'DATE : ', SY-DATUM.
+  WRITE:/ 'TIME : ', SY-UZEIT.
+  ULINE.
+  ENDFORM.

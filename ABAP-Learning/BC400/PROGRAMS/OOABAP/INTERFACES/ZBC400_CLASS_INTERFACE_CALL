@@ -1,0 +1,22 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_INTERFACE_CALL
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_INTERFACE_CALL.
+
+
+DATA: ZC TYPE REF TO ZCL_ADD1.
+
+CREATE OBJECT ZC.
+
+** CALLING METHODS USING METHOD NAMES
+*  CALL METHOD: ZC->ZIF_INTERFACE~GET_DATA,
+*               ZC->ZIF_INTERFACE~DISPLAY_DATA.
+
+
+* CALLING METHODS USING ALIASES
+
+
+CALL METHOD: ZC->B,
+             ZC->A.

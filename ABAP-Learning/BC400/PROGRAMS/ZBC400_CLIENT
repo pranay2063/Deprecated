@@ -1,0 +1,23 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLIENT
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLIENT.
+
+
+TABLES: SCARR,spfli.
+
+*SELECT * FROM SCARR.
+*
+*SELECT * FROM SCARR CLIENT SPECIFIED WHERE MANDT = 900.
+*  WRITE:/ SCARR-MANDT,SCARR-CARRID.
+*
+*  ENDSELECT.
+
+
+select * from spfli BYPASSING BUFFER.
+
+  WRITE:/ SPFLI-CARRID, SPFLI-CONNID.
+
+  ENDSELECT.

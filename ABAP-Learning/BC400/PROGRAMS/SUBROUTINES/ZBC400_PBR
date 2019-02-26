@@ -1,0 +1,38 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_PBR
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_PBR.
+
+DATA: B_AMT TYPE P DECIMALS 2 VALUE '20000.00'.
+PARAMETERS: W_aMT TYPE P DECIMALS 2.
+
+
+WRITE:/ 'BEFORE '.
+ULINE.
+WRITE:/ 'BALANCE AMOUNT ', B_AMT.
+WRITE:/ 'WITHDRAWL AMOUNT ', W_AMT.
+ULINE.
+
+
+SKIP 3.
+
+
+PERFORM GETBAL USING B_AMT W_AMT.
+
+WRITE:/ 'AFTER '.
+ULINE.
+WRITE:/ 'BALANCE AMOUNT ', B_AMT.
+WRITE:/ 'WITHDRAWL AMOUNT ', W_AMT.
+ULINE.
+
+
+
+FORM GETBAL USING BAMT WAMT.
+  IF WAMT > BAMT.
+    MESSAGE I888(SABAPDOCU) WITH 'WITHDRAWL AMOUNT IS GREATER THAN BALANCE AMOUNT'.
+    ELSE.
+      BAMT = BAMT - WAMT.
+      ENDIF.
+      ENDFORM.

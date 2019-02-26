@@ -1,0 +1,27 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_SUBRC
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_SUBRC.
+
+TABLES: SCARR.
+
+PARAMETERS: P_CARRID LIKE SCARR-CARRID.
+
+DATA: GS_SCARR TYPE SCARR.
+
+SELECT SINGLE * FROM SCARR INTO GS_SCARR
+  WHERE CARRID = P_CARRID.
+
+  IF SY-SUBRC = 0.
+
+    NEW-LINE.
+
+    WRITE: GS_SCARR-CARRID, GS_SCARR-CARRNAME, SY-SUBRC.
+
+    ELSE.
+
+      WRITE:/ 'AIRLINE CODE DOES NOT EXISTS', SY-SUBRC.
+
+      ENDIF.

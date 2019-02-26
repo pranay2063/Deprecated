@@ -1,0 +1,11 @@
+  method DISPLAY_DATA.
+
+    LOOP AT IT_KNA1 INTO WA_KNA1.
+
+      WRITE:/ WA_KNA1-KUNNR,
+      WA_KNA1-NAME1,
+      WA_KNA1-ORT01,
+      WA_KNA1-LAND1.
+
+      ENDLOOP.
+  endmethod.

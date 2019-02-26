@@ -1,0 +1,46 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_FS
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_FS.
+
+
+DATA: EMPNO(4) TYPE N,
+      ENAME(15),
+      JOB(15),
+      DOJ TYPE D,
+      TOJ TYPE T,
+      SALARY TYPE P DECIMALS 2,
+      NETSAL TYPE I.
+
+
+FIELD-SYMBOLS: <FS>.
+
+EMPNO = 1.
+ASSIGN EMPNO TO <FS>.
+WRITE:/ <FS>.
+
+ENAME = 'JAMES'.
+ASSIGN ENAME TO <FS>.
+WRITe:/ <FS>.
+
+JOB = 'MANAGER'.
+ASSIGN JOB TO <FS>.
+WRITE:/ <FS>.
+
+DOJ = SY-DATUM.
+ASSIGN DOJ TO <FS>.
+WRITE:/ <FS>.
+
+TOJ = SY-UZEIT.
+ASSIGN TOJ TO <FS>.
+WRITE:/ <FS>.
+
+SALARY = '9000.00'.
+ASSIGN SALARY TO <FS>.
+WRITE:/ <FS>.
+
+NETSAL = 12000.
+ASSIGN SALARY TO <FS>.
+WRITE:/ <FS>.

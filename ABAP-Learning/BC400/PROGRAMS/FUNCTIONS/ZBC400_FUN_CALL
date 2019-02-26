@@ -1,0 +1,36 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_FUN_CALL
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_FUN_CALL.
+
+
+PARAMETERS: NUM1 TYPE I,
+            NUM2 TYPE I.
+
+DATA: RESULT TYPE I.
+
+
+CALL FUNCTION 'ZFUN_ADD'
+ EXPORTING
+   N1               = NUM1
+   N2               = NUM2
+ IMPORTING
+   SUM              = RESULT
+ EXCEPTIONS
+   AEXCEPTION       = 1
+   OTHERS           = 2
+          .
+IF SY-SUBRC <> 0.
+  MESSAGE I888(SABAPDOCU) WITH 'ENTER VALUE OTHER THAN 0'.
+  ELSE.
+
+WRITE:/ 'THE SUM OF 2 NUMBERS IS ', RESULT.
+ENDIF.
+
+
+
+"WRITE A PROGRAM TO ACCEPT A NUMBER AND DISPLAY IT IN CHARACTERS USING FUNCTION MODULE
+
+ "     SPELL_AMOUNT

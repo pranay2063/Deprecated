@@ -1,0 +1,23 @@
+*&---------------------------------------------------------------------*
+*& Report ZCL_CLASS_EXCEPTIONS1
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZCL_CLASS_EXCEPTIONS1.
+
+
+PARAMETERS: P_N1 TYPE I,
+      P_N2 TYPE I.
+
+DATA: RESULT TYPE I,
+      GV_TEXT TYPE STRING,
+      GV_EXEC TYPE REF TO CX_ROOT.
+
+
+TRY.
+RESULT = P_N1 * P_N2.
+WRITE:/ 'RESULT ', RESULT.
+CATCH CX_SY_ARITHMETIC_OVERFLOW INTO GV_EXEC.
+  GV_TEXT = GV_EXEC->GET_TEXT( ).
+  MESSAGE GV_TEXT TYPE 'I'.
+  ENDTRY.

@@ -1,0 +1,75 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_12_CLASS_UPCASTING
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_12_CLASS_UPCASTING.
+
+CLASS UPCAST_SUPER DEFINITION.
+
+  PUBLIC SECTION.
+
+  METHODS: ADD IMPORTING A TYPE I
+                         B TYPE I
+                         EXPORTING SUM TYPE I.
+
+  ENDCLASS.
+
+  CLASS UPCAST_SUPER IMPLEMENTATION.
+
+    METHOD ADD.
+      SUM = A + B.
+      ENDMETHOD.
+
+      ENDCLASS.
+
+
+      CLASS UPCAST_SUB DEFINITION INHERITING FROM UPCAST_SUPER.
+
+        PUBLIC SECTION.
+
+        METHODS: ADD REDEFINITION,
+                 DISPLAY_MSG.
+
+        ENDCLASS.
+
+        CLASS UPCAST_SUB IMPLEMENTATION.
+
+          METHOD ADD.
+            SUM = A - B.
+            ENDMETHOD.
+
+            METHOD DISPLAY_MSG.
+              WRITE:/ 'THIS IS UPCASTING AS I AM NOT A REDIFINED METHOD'.
+              ENDMETHOD.
+
+            ENDCLASS.
+
+
+*            PARAMETERS: P_A TYPE I, P_B TYPE I.
+
+            DATA: ZSUPER1 TYPE REF TO UPCAST_SUPER.
+            DATA: ZSUB_DC TYPE REF TO UPCAST_SUB.
+            DATA: ZSUB_UC TYPE REF TO UPCAST_SUB.
+*            DATA: SUM TYPE I.
+
+            START-OF-SELECTION.
+*            CREATE OBJECT: ZSUB1.
+*
+*            ZSUPER1 = ZSUB1.
+*
+*            CALL METHOD ZSUPER1->ADD
+*            EXPORTING
+*              A = P_A
+*              B = P_B
+*              IMPORTING
+*                SUM = SUM.
+
+
+            CREATE OBJECT: ZSUB_DC.
+
+            ZSUPER1 = ZSUB_DC. "DOWNCASTING
+            ZSUB_UC ?= ZSUPER1. "UPCASTING
+
+
+            CALL METHOD: ZSUB_UC->DISPLAY_MSG.

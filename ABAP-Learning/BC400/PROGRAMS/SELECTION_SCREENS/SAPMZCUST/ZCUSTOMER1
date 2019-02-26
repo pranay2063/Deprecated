@@ -1,0 +1,48 @@
+*&---------------------------------------------------------------------*
+*& Module Pool       SAPMZCUST
+*& 
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+
+
+INCLUDE SAPMZCUSTTOP                            .    " global Data
+
+* INCLUDE SAPMZCUSTO01                            .  " PBO-Modules
+* INCLUDE SAPMZCUSTI01                            .  " PAI-Modules
+* INCLUDE SAPMZCUSTF01                            .  " FORM-Routines
+TABLES: ZCUSTOMER1.
+
+AT USER-COMMAND.
+*&---------------------------------------------------------------------*
+*&      Module  USER_COMMAND_0100  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE USER_COMMAND_0100 INPUT.
+
+  CASE SY-UCOMM.
+
+    WHEN 'SAVE'.
+      INSERT ZCUSTOMER1.
+      IF SY-SUBRC = 0.
+        MESSAGE I888(SABAPDOCU) WITH 'RECORD INSERTED SUCESFUULY '.
+        ELSE.
+          MESSAGE I888(SABPADOCU) WITH 'RECORD ALREADY EXISTS'.
+          ENDIF.
+
+
+          WHEN 'CLEAR'.
+            CLEAR ZCUSTOMER1.
+
+            WHEN 'FIND'.
+              SELECT SINGLE * FROM ZCUSTOMER1
+                WHERE KUNNR = ZCUSTOMER1-KUNNR.
+
+                  WHEN 'EXIT'.
+                    LEAVE TO SCREEN 0.
+
+                    ENDCASE.
+
+ENDMODULE.

@@ -1,0 +1,32 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CASE
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CASE.
+
+
+PARAMETERS: CH.
+
+
+CASE CH.
+
+    WHEN 'A'.
+      WRITE:/ 'VOWEL'.
+
+      WHEN 'E'.
+        WRITE:/ 'VOWEL'.
+
+        WHEN 'I'.
+          WRITE:/ 'VOWEL'.
+
+          WHEN 'O'.
+            WRITE:/ 'VOWEL'.
+
+            WHEN 'U'.
+              WRITE:/ 'VOWEL'.
+
+              WHEN OTHERS.
+                WRITE:/ 'CONSONANT'.
+
+                ENDCASE.

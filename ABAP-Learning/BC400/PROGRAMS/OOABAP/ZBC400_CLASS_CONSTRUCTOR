@@ -1,0 +1,52 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_CONSTRUCT
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_CONSTRUCT.
+
+
+CLASS ZCL_CONSTRUCT DEFINITION.
+
+  PUBLIC SECTION.
+
+  METHODS: CONSTRUCTOR IMPORTING A TYPE I,
+
+                         ANOTHER.
+
+  ENDCLASS.
+
+
+  CLASS ZCL_CONSTRUCT IMPLEMENTATION.
+
+    METHOD CONSTRUCTOR.
+
+      WRITE:/ 'THIS IS CONSTRUCTOR METHOD ' COLOR 6.
+      ULINE.
+      WRITE:/ 'A = ', A.
+
+      ENDMETHOD.
+
+
+     METHOD ANOTHER.
+
+       WRITE:/ 'THIS IS METHOD ANOTHER ' COLOR 2.
+       ULINE.
+       WRITE:/ 'CURRENT DATE ', SY-DATUM.
+       WRITE:/ 'CURRENT TIME ', SY-UZEIT.
+       ULINE.
+
+       ENDMETHOD.
+
+       ENDCLASS.
+
+
+       DATA ZC TYPE REF TO ZCL_CONSTRUCT.
+
+       START-OF-SELECTION.
+
+       CREATE OBJECT ZC EXPORTING A = 10.
+
+       SKIP 3.
+
+       CALL METHOD ZC->ANOTHER.

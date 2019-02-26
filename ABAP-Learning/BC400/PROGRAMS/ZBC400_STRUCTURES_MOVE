@@ -1,0 +1,35 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_STRUCTURES_MOVE
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_STRUCTURES_MOVE.
+
+TYPES: BEGIN OF GTY_NAME1,
+       FNAME(15) TYPE C,
+       MNAME(3) TYPE C,
+       LNAME(15) TYPE C,
+       END OF GTY_NAME1.
+
+
+       TYPES: BEGIN OF GTY_NAME2,
+         FNAME(15),
+         LNAME(15),
+         END OF GTY_NAME2.
+
+
+         DATA: DT_NAME1 TYPE GTY_NAME1,
+               DT_NAME2 TYPE GTY_NAME2.
+
+
+         DT_NAME1-FNAME = 'JAMES'.
+         DT_NAME1-MNAME = '.H.'.
+         DT_NAME1-LNAME = 'HADLEY'.
+
+         WRITE:/ DT_NAME1-FNAME, DT_NAME1-MNAME, DT_NAME1-LNAME.
+
+         MOVE-CORRESPONDING DT_NAME1 TO DT_NAME2.
+
+         SKIP 3.
+
+         WRITE:/ DT_NAME2-FNAME, DT_NAME2-LNAME.

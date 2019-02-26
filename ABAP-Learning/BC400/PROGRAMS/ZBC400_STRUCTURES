@@ -1,0 +1,25 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_STRUCTURES
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_STRUCTURES.
+
+TYPES: BEGIN OF GTY_EMPLOYEE,
+       EMPNO(4) TYPE N,
+       ENAME(15),
+        JOB(15),
+       SALARY TYPE P DECIMALS 2,
+       END OF GTY_EMPLOYEE.
+
+
+DATA: DT_EMP TYPE GTY_EMPLOYEE.
+
+
+       DT_EMP-EMPNO = 1.
+       DT_EMP-ENAME = 'JAMES'.
+       DT_EMP-JOB = 'MANAGER'.
+       DT_EMP-SALARY = '9000.00'.
+
+
+       WRITE: DT_EMP-EMPNO,DT_EMP-ENAME,DT_EMP-JOB,DT_EMP-SALARY.

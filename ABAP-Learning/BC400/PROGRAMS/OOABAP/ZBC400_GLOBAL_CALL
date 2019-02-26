@@ -1,0 +1,36 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_GLOBAL_CALL
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_GLOBAL_CALL.
+
+
+PARAMETERS: NUM1 TYPE I,
+            NUM2 TYPE I.
+
+DATA: RES TYPE I.
+
+DATA: ZC TYPE REF TO ZCL_ADD.
+
+CREATE OBJECT ZC.
+
+CALL METHOD ZC->DISPLAY_DATA
+EXPORTING
+  N1 = NUM1
+  N2 = NUM2
+  IMPORTING
+    RESULT = RES.
+
+
+*CALL METHOD XXXXXXXX->DISPLAY_DATA
+**  EXPORTING
+**    N1     =
+**    N2     =
+**  IMPORTING
+**    RESULT =
+*    .
+*
+
+
+WRITE:/ 'THE SUM OF 2 NUMBERS IS ', RES.

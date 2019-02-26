@@ -1,0 +1,36 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_STRING
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_STRING.
+
+
+DATA: FNAME(15) TYPE C VALUE 'JAMES',
+      MNAME(1) TYPE C VALUE 'F',
+      LNAME(15) TYPE C VALUE 'HADLEY',
+      NAME1(30),
+      NAME2(30) TYPE C VALUE '            SMITH'.
+
+
+CONCATENATE FNAME MNAME LNAME INTO NAME1 SEPARATED BY '.'.
+TRANSLATE NAME1 TO LOWER CASE.
+
+WRITE:/ NAME1.
+
+SKIP.
+
+CONCATENATE FNAME MNAME LNAME INTO NAME1 SEPARATED BY '-'.
+TRANSLATE NAME1 TO UPPER CASE.
+
+WRITE:/ NAME1.
+
+SKIP.
+
+WRITE:/ NAME2.
+
+SKIP .
+
+CONDENSE NAME2.
+
+WRITE:/ NAME2.

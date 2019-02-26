@@ -1,0 +1,53 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_INTERACTIVE
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_INTERACTIVE NO STANDARD PAGE HEADING.
+
+WRITE:/150 'DATE : ', SY-DATUM.
+WRITE:/150 'TIME : ', SY-UZEIT.
+ULINE.
+
+SKIP 5.
+
+WRITE:/75 'M A I N  M E N U '.
+ULINE:/75(18).
+
+SKIP 2.
+WRITE:/70 '1. ABAP DICTIONARY'.
+SKIP.
+WRITE:/70 '2. ABAP EDITOR'.
+SKIP.
+WRITE:/70 '3. FUNCTION MODULE '.
+  SKIP.
+  WRITE:/70 '4. OBJECT NAVIGATOR '.
+  SKIP.
+  WRITE:/70 '5. EXIT'.
+  SKIP.
+  WRITE:/70 'ENTER YOUR CHOICE BETWEEN 1 TO 5 '.
+
+
+  AT USER-COMMAND.
+
+    CASE SY-UCOMM.
+
+      WHEN '1'.
+        CALL TRANSACTION 'SE11'.
+
+        WHEN '2'.
+          CALL TRANSACTION 'SE38'.
+
+          WHEN '3'.
+            CALL TRANSACTION 'SE37'.
+
+            WHEN '4'.
+              CALL TRANSACTION 'SE80'.
+
+              WHEN '5'.
+                LEAVE TO SCREEN 0.
+
+                WHEN OTHERS.
+                  MESSAGE I888(SABAPDOCU) WITH 'ENTER A VALID OPTION BETWEEN 1 TO 5'.
+
+                  ENDCASE.

@@ -1,0 +1,45 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_MSG_CALL
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_MSG_CALL .
+
+*REPORT ZBC400_MSG_CALL MESSAGE-ID ZMY_MSG
+*PARAMETERS: EMPNO(4) TYPE N,
+*            ENAME(15),
+*            JOB(15),
+*            SALARY TYPE P DECIMALS 2.
+*
+*
+*IF SALARY >= 8000 AND SALARY <= 10000.
+*  MESSAGE I000.
+*  ELSEIF SALARY < 8000 AND SALARY >= 6000.
+*    MESSAGE I001(ZMY_MSG).
+*    ELSEIF SALARY < 6000 AND SALARY >= 4000.
+*      MESSAGE I002.
+*      ELSEIF SALARY < 4000 AND SALARY >= 2000.
+*        MESSAGE I003.
+*        ELSE.
+*          MESSAGE S004.
+*          ENDIF.
+
+
+
+PARAMETERS: EMPNO(4) TYPE N,
+            ENAME(15),
+            JOB(15),
+            SALARY TYPE P DECIMALS 2.
+
+
+IF SALARY >= 8000 AND SALARY <= 10000.
+  MESSAGE I888(SABAPDOCU) WITH 'A GRADE OFFICER'.
+  ELSEIF SALARY < 8000 AND SALARY >= 6000.
+    MESSAGE I888(SABAPDOCU) WITH 'B GRADE OFFICER'.
+    ELSEIF SALARY < 6000 AND SALARY >= 4000.
+      MESSAGE I888(SABAPDOCU) WITH 'C GRADE OFFICER'.
+      ELSEIF SALARY < 4000 AND SALARY >= 2000.
+        MESSAGE I888(SABAPDOCU) WITH 'D GRADE OFFICER'.
+        ELSE.
+          MESSAGE S888(SABAPDOCU) WITH 'INVALID SALARY  '.
+          ENDIF.

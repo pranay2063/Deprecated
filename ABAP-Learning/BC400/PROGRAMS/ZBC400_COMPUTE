@@ -1,0 +1,51 @@
+
+*&---------------------------------------------------------------------*
+*& Report ZBC400_COMPUTE
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_COMPUTE.
+
+
+DATA: EMPNO(4) TYPE N,
+      ENAME(15),
+      JOB(15),
+      DOJ TYPE D,
+      TOJ TYPE T,
+      SALARY(10) TYPE P DECIMALS 2,
+      HRA LIKE SALARY,
+      DA LIKE SALARY,
+      PF LIKE SALARY,
+      LIC LIKE SALARY,
+      NETSAL LIKE SALARY.
+
+
+EMPNO = 1.
+ENAME = 'JAMES'.
+JOB = 'MANAGER'.
+DOJ = SY-DATUM.
+TOJ = SY-UZEIT.
+SALARY = '9000.00'.
+
+
+COMPUTE HRA = SALARY * 20 / 100.
+DA = SALARY * 5 / 100.
+
+COMPUTE PF = SALARY * 12 / 100.
+
+LIC = SALARY * 5 / 100.
+
+COMPUTE NETSAL = SALARY + HRA + DA - PF - LIC.
+
+
+WRITE:/ 'EMPLOYEE NUMBER = ',EMPNO,
+/ 'EMPLOYEE NAME = ',ENAME,
+/ 'JOB OF EMPLOYEE  = ', JOB,
+/ DOJ,
+/ TOJ,
+/ SALARY,
+/ HRA,
+/ DA,
+/ PF,
+/ LIC,
+/ NETSAL.

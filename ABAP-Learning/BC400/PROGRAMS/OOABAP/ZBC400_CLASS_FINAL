@@ -1,0 +1,19 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_FINAL
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_FINAL.
+
+CLASS ZCL_SUPER DEFINITION FINAL.
+
+  PRIVATE SECTION.
+
+  DATA: N1 TYPE I VALUE 100.
+
+  ENDCLASS.
+
+
+*  CLASS ZCL_SUB DEFINITION INHERITING FROM ZCL_SUPER.
+*
+*   ENDCLASS.

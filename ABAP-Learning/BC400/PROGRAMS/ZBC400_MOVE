@@ -1,0 +1,20 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_MOVE
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_MOVE.
+
+
+DATA: EMPNO(4) TYPE N,
+      ENAME(15),
+      JOB(15),
+      SALARY TYPE P DECIMALS 2.
+
+
+MOVE 1 TO EMPNO.
+MOVE 'JAMES' TO ENAME.
+MOVE 'MANAGER' TO JOB.
+MOVE '9000.00' TO SALARY.
+
+WRITE:/ EMPNO,ENAME,JOB,SALARY.

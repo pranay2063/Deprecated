@@ -1,0 +1,22 @@
+*&---------------------------------------------------------------------*
+*& Report ZCL_CLASS_EXCEPTIONS
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZCL_CLASS_EXCEPTIONS.
+
+PARAMETERS: P_N1 TYPE I,
+            P_N2 TYPE I.
+
+DATA: RESULT TYPE I.
+DATA: GV_TEXT TYPE STRING,
+      GV_EXEC TYPE REF TO CX_ROOT.
+
+
+TRY.
+RESULT = P_N1 / P_N2.
+WRITe:/ 'RESUKT = ', RESULT.
+CATCH CX_SY_ZERODIVIDE INTO GV_EXEC.
+  GV_TEXT = GV_EXEC->GET_TEXT( ).
+  MESSAGE GV_TEXT TYPE 'I'.
+  ENDTRY.

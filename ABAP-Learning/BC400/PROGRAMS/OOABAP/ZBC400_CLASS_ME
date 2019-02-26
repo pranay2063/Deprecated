@@ -1,0 +1,47 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_ME
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_ME.
+
+
+CLASS ZCL_ME DEFINITION.
+
+  PUBLIC SECTION.
+
+  DATA: V_TXT TYPE STRING VALUE 'JAMES'.
+
+  METHODS: DISPLAY_DATA.
+
+  ENDCLASS.
+
+
+  CLASS ZCL_ME IMPLEMENTATION.
+
+    METHOD DISPLAY_DATA.
+
+      DATA: V_TXT TYPE STRING VALUE 'SMITH'.
+
+      WRITE:/ 'DECLARED INSIDE THE METHOD OF CLASS IMPLEMENTATION',
+      / ME->V_TXT.
+
+ULINE.
+      SKIP 3.
+
+
+      WRITE:/ 'DECLARED IN THE DEFINITION SECTION OF CLASS ',
+      / V_TXT.
+
+      ENDMETHOD.
+
+      ENDCLASS.
+
+
+      DATA: ZC TYPE REF TO ZCL_ME.
+
+      START-OF-SELECTION.
+
+      CREATE OBJECT ZC.
+
+      CALL METHOD ZC->DISPLAY_DATA.

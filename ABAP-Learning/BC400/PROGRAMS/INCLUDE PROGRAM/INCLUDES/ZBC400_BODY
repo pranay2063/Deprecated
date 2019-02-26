@@ -1,0 +1,27 @@
+*&---------------------------------------------------------------------*
+*&  Include  ZBC400_BODY
+*&---------------------------------------------------------------------*
+
+PARAMETERS: P_CARRID LIKE SPFLI-CARRID.
+
+
+    SELECT * FROM SPFLI WHERE CARRID = P_CARRID.
+
+  WRITE:/1 SPFLI-CARRID COLOR 7,
+       18 SY-VLINE,
+        20 SPFLI-CONNID,
+        38 SY-VLINE,
+        40 SPFLI-COUNTRYFR,
+        58 SY-VLINE,
+        60 SPFLI-COUNTRYTO,
+        78 SY-VLINE,
+        80 SPFLI-CITYFROM,
+        98 SY-VLINE,
+        100 SPFLI-CITYTO,
+        118 SY-VLINE,
+        120 SPFLI-AIRPFROM,
+        138 SY-VLINE,
+        140 SPFLI-AIRPTO.
+
+  ENDSELECT.
+  ULINE.

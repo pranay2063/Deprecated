@@ -1,0 +1,17 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_PARAMETERS
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_PARAMETERS.
+
+
+PARAMETERS: EMPNO(4) TYPE N OBLIGATORY,
+            ENAME(15) LOWER CASE,
+            JOB(15) DEFAULT 'MANAGER',
+            SALARY TYPE P DECIMALS 2 NO-DISPLAY,
+            ADDRESS TYPE C  LENGTH 5,
+            ADDRESS1 LIKE ADDRESS.
+
+
+WRITE:/ EMPNO,ENAME,JOB,SALARY.

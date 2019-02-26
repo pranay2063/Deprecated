@@ -1,0 +1,26 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_INTERNAL3
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_INTERNAL3.
+
+TYPES: BEGIN OF GTY_SPFLI,
+        CARRID TYPE SPFLI-CARRID,
+        CONNID TYPE SPFLI-CONNID,
+       END OF GTY_SPFLI.
+
+
+       DATA: DT_SPFLI TYPE GTY_SPFLI.
+
+       DATA: IT_SPFLI LIKE STANDARD TABLE OF DT_SPFLI.
+
+       SELECT CARRID CONNID FROM SPFLI
+         INTO CORRESPONDING FIELDS OF TABLE IT_SPFLI.
+
+
+         LOOP AT IT_SPFLI INTO DT_SPFLI.
+
+           WRITE:/ DT_SPFLI-CARRID, DT_SPFLI-CONNID.
+
+           ENDLOOP.

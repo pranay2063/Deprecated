@@ -1,0 +1,29 @@
+*&---------------------------------------------------------------------*
+*&  Include  ZBC400_HEADER
+*&---------------------------------------------------------------------*
+
+TABLES: SPFLI.
+
+
+  WRITE:/120 'DATE : ', SY-DATUM.
+  WRITE:/120 'TIME : ', SY-UZEIT.
+  ULINE.
+
+  WRITE:/60 'FLIGHT DETAILS REPORT ' COLOR 5.
+  ULINE.
+  WRITE:/1 'CARRID ' COLOR 7,
+        18 SY-VLINE,
+        20 'CONNID' COLOR 7,
+        38 SY-VLINE,
+        40 'COUNTRY FROM ' COLOR 7,
+        58 SY-VLINE,
+        60 'COUNTRY TO ' COLOR 7,
+        78 SY-VLINE,
+        80 'CITY FROM ' COLOR 7,
+        98 SY-VLINE,
+        100 'CITY TO ' COLOR 7,
+        118 SY-VLINE,
+        120 'AIRPORT FROM ' COLOR 7,
+        138 SY-VLINE,
+        140 'AIRPORT TO ' COLOR 7  INTENSIFIED OFF.
+  ULINE.

@@ -1,0 +1,483 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_INTERNAL1
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_INTERNAL1.
+
+
+***** CONTROL BREAK EVENTS
+
+
+TYPES: BEGIN OF GTY_EMPLOYEE,
+       EMPNO TYPE I,
+       ENAME(15),
+       JOB(15),
+       SALARY TYPE P DECIMALS 2,
+       END OF GTY_EMPLOYEE.
+
+
+       DATA: DT_EMP TYPE GTY_EMPLOYEE.
+       DATA: IT_EMP LIKE STANDARD TABLE OF DT_EMP WITH HEADER LINE.
+
+       IT_EMP-EMPNO = 1.
+       IT_EMP-ENAME = 'JAMES'.
+       IT_EMP-JOB = 'MANAGER'.
+       IT_EMP-SALARY = '9000.00'.
+       APPEND  IT_EMP.
+
+       IT_EMP-EMPNO = 2.
+       IT_EMP-ENAME = 'KING'.
+       IT_EMP-JOB = 'CLERK'.
+       IT_EMP-SALARY = '5000.00'.
+       APPEND  IT_EMP.
+
+       IT_EMP-EMPNO = 3.
+       IT_EMP-ENAME = 'MILLER'.
+       IT_EMP-JOB = 'SALESMAN'.
+       IT_EMP-SALARY = '3000.00'.
+       APPEND IT_EMP.
+
+       IT_EMP-EMPNO = 4.
+       IT_EMP-ENAME = 'JACK'.
+       IT_EMP-JOB = 'SALESMAN'.
+       IT_EMP-SALARY = '3000.00'.
+       APPEND  IT_EMP.
+
+LOOP AT IT_EMP.
+
+AT FIRST.
+WRITE:/70 'EMPLOYEE DETAILS '.
+ULINE.
+WRITE:/1 'EMPLOYEE NUMBER ',
+30 'EMPLOYEE NAME ',
+80 'JOB',
+130 'SALARY '.
+ULINE.
+
+ENDAT.
+
+WRITE:/1  IT_EMP-EMPNO, 30 IT_EMP-ENAME, 80 IT_EMP-JOB, 130 IT_EMP-SALARY.
+
+AT END OF ENAME.
+  SUM.
+  ULINE.
+  WRITE:/75 'THE SALARY OF ', IT_EMP-ENAME COLOR 5, ' IS ', IT_EMP-SALARY COLOR 5.
+  ULINE.
+  ENDAT.
+
+
+AT LAST.
+ULINE.
+SUM.
+WRITE:/75 'THE SUM OF SALARIES TO BE PAID ARE ', IT_EMP-SALARY COLOR 7.
+ULINE.
+ENDAT.
+
+ENDLOOP.
+ULINE.
+
+*** SORT
+
+*
+*TYPES: BEGIN OF GTY_EMPLOYEE,
+*       EMPNO(4) TYPE N,
+*       ENAME(15),
+*       JOB(15),
+*       SALARY TYPE P DECIMALS 2,
+*       END OF GTY_EMPLOYEE.
+*
+*
+*       DATA: DT_EMP TYPE GTY_EMPLOYEE.
+*       DATA: IT_EMP LIKE STANDARD TABLE OF DT_EMP WITH HEADER LINE.
+*
+*       IT_EMP-EMPNO = 1.
+*       IT_EMP-ENAME = 'JAMES'.
+*       IT_EMP-JOB = 'MANAGER'.
+*       IT_EMP-SALARY = '9000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 2.
+*       IT_EMP-ENAME = 'KING'.
+*       IT_EMP-JOB = 'CLERK'.
+*       IT_EMP-SALARY = '5000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 3.
+*       IT_EMP-ENAME = 'MILLER'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       APPEND IT_EMP.
+*
+*       IT_EMP-EMPNO = 4.
+*       IT_EMP-ENAME = 'JACK'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       APPEND  IT_EMP.
+*
+**SORT IT_EMP ASCENDING BY ENAME.
+*SORT IT_EMP DESCENDING BY EMPNO.
+*
+*LOOP AT IT_EMP.
+*WRITE:/  IT_EMP-EMPNO, IT_EMP-ENAME, IT_EMP-JOB, IT_EMP-SALARY.
+*ENDLOOP.
+*
+*
+
+*** CLEAR/CLEAR[]/FREE/REFRESH
+
+*
+*TYPES: BEGIN OF GTY_EMPLOYEE,
+*       EMPNO(4) TYPE N,
+*       ENAME(15),
+*       JOB(15),
+*       SALARY TYPE P DECIMALS 2,
+*       END OF GTY_EMPLOYEE.
+*
+*
+*       DATA: DT_EMP TYPE GTY_EMPLOYEE.
+*       DATA: IT_EMP LIKE STANDARD TABLE OF DT_EMP WITH HEADER LINE.
+*
+*       IT_EMP-EMPNO = 1.
+*       IT_EMP-ENAME = 'JAMES'.
+*       IT_EMP-JOB = 'MANAGER'.
+*       IT_EMP-SALARY = '9000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 2.
+*       IT_EMP-ENAME = 'KING'.
+*       IT_EMP-JOB = 'CLERK'.
+*       IT_EMP-SALARY = '5000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 3.
+*       IT_EMP-ENAME = 'MILLER'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       APPEND IT_EMP.
+*
+*       IT_EMP-EMPNO = 4.
+*       IT_EMP-ENAME = 'JACK'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       APPEND  IT_EMP.
+*
+**CLEAR IT_EMP.
+**CLEAR IT_EMP[].
+**FREE IT_EMP.
+**REFRESH IT_EMP.
+*LOOP AT IT_EMP.
+*WRITE:/  IT_EMP-EMPNO, IT_EMP-ENAME, IT_EMP-JOB, IT_EMP-SALARY.
+*ENDLOOP.
+*
+
+*
+*** MODIFY
+
+*
+*PARAMETERS: ENO(4) TYPE I.
+*
+*TYPES: BEGIN OF GTY_EMPLOYEE,
+*       EMPNO(4) TYPE N,
+*       ENAME(15),
+*       JOB(15),
+*       SALARY TYPE P DECIMALS 2,
+*       END OF GTY_EMPLOYEE.
+*
+*
+*       DATA: DT_EMP TYPE GTY_EMPLOYEE.
+*       DATA: IT_EMP LIKE STANDARD TABLE OF DT_EMP WITH HEADER LINE.
+*
+*       IT_EMP-EMPNO = 1.
+*       IT_EMP-ENAME = 'JAMES'.
+*       IT_EMP-JOB = 'MANAGER'.
+*       IT_EMP-SALARY = '9000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 2.
+*       IT_EMP-ENAME = 'KING'.
+*       IT_EMP-JOB = 'CLERK'.
+*       IT_EMP-SALARY = '5000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 3.
+*       IT_EMP-ENAME = 'MILLER'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       APPEND IT_EMP.
+*
+*       IT_EMP-EMPNO = 4.
+*       IT_EMP-ENAME = 'JACK'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       APPEND  IT_EMP.
+*
+*
+*READ TABLE IT_EMP WITH KEY EMPNO = ENO.
+*
+*IF SY-SUBRC <> 0.
+*      MESSAGE I888(SABAPDOCU) WITH 'RECORD DOES NOT EXISTS'.
+*      ELSE.
+*          IT_EMP-EMPNO = 99.
+*          IT_EMP-ENAME = 'MAX'.
+*          IT_EMP-JOB = 'ANALYST'.
+*          IT_EMP-SALARY = '8000.00'.
+*          MODIFY IT_EMP INDEX SY-TABIX.
+*  ENDIF.
+*
+*LOOP AT IT_EMP.
+*WRITE:/  IT_EMP-EMPNO, IT_EMP-ENAME, IT_EMP-JOB, IT_EMP-SALARY.
+*ENDLOOP.
+*
+
+
+**** DELETE
+*
+*PARAMETERS: ENO(4) TYPE I.
+*
+*TYPES: BEGIN OF GTY_EMPLOYEE,
+*       EMPNO(4) TYPE N,
+*       ENAME(15),
+*       JOB(15),
+*       SALARY TYPE P DECIMALS 2,
+*       END OF GTY_EMPLOYEE.
+*
+*
+*       DATA: DT_EMP TYPE GTY_EMPLOYEE.
+*       DATA: IT_EMP LIKE STANDARD TABLE OF DT_EMP WITH HEADER LINE.
+*
+*       IT_EMP-EMPNO = 1.
+*       IT_EMP-ENAME = 'JAMES'.
+*       IT_EMP-JOB = 'MANAGER'.
+*       IT_EMP-SALARY = '9000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 2.
+*       IT_EMP-ENAME = 'KING'.
+*       IT_EMP-JOB = 'CLERK'.
+*       IT_EMP-SALARY = '5000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 3.
+*       IT_EMP-ENAME = 'MILLER'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       APPEND IT_EMP.
+*
+*       IT_EMP-EMPNO = 4.
+*       IT_EMP-ENAME = 'JACK'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       APPEND  IT_EMP.
+*
+*
+*READ TABLE IT_EMP WITH KEY EMPNO = ENO.
+*
+*IF SY-SUBRC <> 0.
+*      MESSAGE I888(SABAPDOCU) WITH 'RECORD DOES NOT EXISTS'.
+*      ELSE.
+*        DELETE IT_EMP WHERE EMPNO = ENO.
+*  ENDIF.
+*
+*LOOP AT IT_EMP.
+*WRITE:/  IT_EMP-EMPNO, IT_EMP-ENAME, IT_EMP-JOB, IT_EMP-SALARY.
+*ENDLOOP.
+*
+
+
+**** READ
+
+*PARAMETERS: ENO(4) TYPE I.
+*
+*TYPES: BEGIN OF GTY_EMPLOYEE,
+*       EMPNO(4) TYPE N,
+*       ENAME(15),
+*       JOB(15),
+*       SALARY TYPE P DECIMALS 2,
+*       END OF GTY_EMPLOYEE.
+*
+*
+*       DATA: DT_EMP TYPE GTY_EMPLOYEE.
+*       DATA: IT_EMP LIKE STANDARD TABLE OF DT_EMP WITH HEADER LINE.
+*
+*       IT_EMP-EMPNO = 1.
+*       IT_EMP-ENAME = 'JAMES'.
+*       IT_EMP-JOB = 'MANAGER'.
+*       IT_EMP-SALARY = '9000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 4.
+*       IT_EMP-ENAME = 'KING'.
+*       IT_EMP-JOB = 'CLERK'.
+*       IT_EMP-SALARY = '5000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 3.
+*       IT_EMP-ENAME = 'MILLER'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       APPEND IT_EMP.
+*
+*       IT_EMP-EMPNO = 4.
+*       IT_EMP-ENAME = 'JACK'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       APPEND  IT_EMP.
+*
+*
+*
+*READ TABLE IT_EMP WITH KEY EMPNO = ENO.
+*IF SY-SUBRC = 0.
+*        WRITE:/ IT_EMP-EMPNO, IT_EMP-ENAME, IT_EMP-JOB, IT_EMP-SALARY.
+*ELSE.
+*  MESSAGE I888(SABAPDOCU) WITH 'RECORD DOES NOT EXISTS'.
+*  ENDIF.
+*
+
+***** INSERT
+*
+*TYPES: BEGIN OF GTY_EMPLOYEE,
+*       EMPNO(4) TYPE N,
+*       ENAME(15),
+*       JOB(15),
+*       SALARY TYPE P DECIMALS 2,
+*       END OF GTY_EMPLOYEE.
+*
+*
+*       DATA: DT_EMP TYPE GTY_EMPLOYEE.
+*       DATA: IT_EMP LIKE STANDARD TABLE OF DT_EMP WITH HEADER LINE.
+*
+*       IT_EMP-EMPNO = 1.
+*       IT_EMP-ENAME = 'JAMES'.
+*       IT_EMP-JOB = 'MANAGER'.
+*       IT_EMP-SALARY = '9000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 4.
+*       IT_EMP-ENAME = 'KING'.
+*       IT_EMP-JOB = 'CLERK'.
+*       IT_EMP-SALARY = '5000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 3.
+*       IT_EMP-ENAME = 'MILLER'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       INSERT IT_EMP INDEX 2.
+*
+*       IT_EMP-EMPNO = 4.
+*       IT_EMP-ENAME = 'JACK'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       INSERT  IT_EMP INDEX 1.
+*
+*WRITE:/60 'EMPLOYEE DETAILS '.
+*      ULINE.
+*
+*
+*       LOOP AT IT_EMP .
+*
+*         WRITE:/ IT_EMP-EMPNO, IT_EMP-ENAME, IT_EMP-JOB, IT_EMP-SALARY.
+*
+*        ENDLOOP.
+
+
+**** WITH HEADER LINE
+
+
+
+*TYPES: BEGIN OF GTY_EMPLOYEE,
+*       EMPNO(4) TYPE N,
+*       ENAME(15),
+*       JOB(15),
+*       SALARY TYPE P DECIMALS 2,
+*       END OF GTY_EMPLOYEE.
+*
+*
+*       DATA: DT_EMP TYPE GTY_EMPLOYEE.
+*       DATA: IT_EMP LIKE STANDARD TABLE OF DT_EMP WITH HEADER LINE.
+*
+*       IT_EMP-EMPNO = 1.
+*       IT_EMP-ENAME = 'JAMES'.
+*       IT_EMP-JOB = 'MANAGER'.
+*       IT_EMP-SALARY = '9000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 4.
+*       IT_EMP-ENAME = 'KING'.
+*       IT_EMP-JOB = 'CLERK'.
+*       IT_EMP-SALARY = '5000.00'.
+*       APPEND  IT_EMP.
+*
+*       IT_EMP-EMPNO = 3.
+*       IT_EMP-ENAME = 'MILLER'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       APPEND IT_EMP.
+*
+*       IT_EMP-EMPNO = 4.
+*       IT_EMP-ENAME = 'JACK'.
+*       IT_EMP-JOB = 'SALESMAN'.
+*       IT_EMP-SALARY = '3000.00'.
+*       APPEND  IT_EMP.
+*
+*WRITE:/60 'EMPLOYEE DETAILS '.
+*      ULINE.
+*
+*
+*       LOOP AT IT_EMP .
+*
+*
+*
+*         WRITE:/ IT_EMP-EMPNO, IT_EMP-ENAME, IT_EMP-JOB, IT_EMP-SALARY.
+*
+*        ENDLOOP.
+
+**** WITHOUT HEADER LINE
+*
+*TYPES: BEGIN OF GTY_EMPLOYEE,
+*       EMPNO(4) TYPE N,
+*       ENAME(15),
+*       JOB(15),
+*       SALARY TYPE P DECIMALS 2,
+*       END OF GTY_EMPLOYEE.
+*
+*
+*       DATA: DT_EMP TYPE GTY_EMPLOYEE.
+*       DATA: IT_EMP LIKE STANDARD TABLE OF DT_EMP.
+*
+*       DT_EMP-EMPNO = 1.
+*       DT_EMP-ENAME = 'JAMES'.
+*       DT_EMP-JOB = 'MANAGER'.
+*       DT_EMP-SALARY = '9000.00'.
+*       APPEND DT_EMP TO IT_EMP.
+*
+*       DT_EMP-EMPNO = 4.
+*       DT_EMP-ENAME = 'KING'.
+*       DT_EMP-JOB = 'CLERK'.
+*       DT_EMP-SALARY = '5000.00'.
+*       APPEND DT_EMP TO IT_EMP.
+*
+*       DT_EMP-EMPNO = 3.
+*       DT_EMP-ENAME = 'MILLER'.
+*       DT_EMP-JOB = 'SALESMAN'.
+*       DT_EMP-SALARY = '3000.00'.
+*       APPEND DT_EMP TO IT_EMP.
+*
+*       DT_EMP-EMPNO = 4.
+*       DT_EMP-ENAME = 'JACK'.
+*       DT_EMP-JOB = 'SALESMAN'.
+*       DT_EMP-SALARY = '3000.00'.
+*       APPEND DT_EMP TO IT_EMP.
+*
+*WRITE:/60 'EMPLOYEE DETAILS '.
+*      ULINE.
+*
+*
+*       LOOP AT IT_EMP INTO DT_EMP.
+*
+*
+*
+*         WRITE:/ DT_EMP-EMPNO, DT_EMP-ENAME, DT_EMP-JOB, DT_EMP-SALARY.
+*
+*        ENDLOOP.

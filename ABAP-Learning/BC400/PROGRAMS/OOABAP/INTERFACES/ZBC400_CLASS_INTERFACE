@@ -1,0 +1,80 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_INTERFACES
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_INTERFACES.
+
+
+INTERFACE I1.
+
+DATA: N1 TYPE I,
+      N2 TYPE I,
+      RESULT TYPE I.
+
+METHODS: GET_DATA,
+DISPLAY_DATA.
+
+ENDINTERFACE.
+
+
+CLASS ZCL_FIRST DEFINITION.
+
+  PUBLIC SECTION.
+  INTERFACES: I1.
+
+  ENDCLASS.
+
+
+  CLASS ZCL_SECOND DEFINITION.
+
+    PUBLIC SECTION.
+    INTERFACES: I1.
+
+    ENDCLASS.
+
+
+    CLASS ZCL_FIRST IMPLEMENTATION. 
+
+      METHOD I1~GET_DATA. 
+        I1~N1 = 10.
+        I1~N2 = 20.
+        I1~RESULT = I1~N1 + I1~N2.
+      ENDMETHOD.
+
+      METHOD I1~DISPLAY_DATA.
+        WRITE:/ 'THE SUM OF 2 NUMBERS IS ', I1~RESULT.
+        ENDMETHOD.
+
+        ENDCLASS.
+
+
+        CLASS ZCL_SECOND IMPLEMENTATION.
+
+          METHOD I1~GET_DATA.
+            I1~N1 = 5.
+            I1~N2 = 25.
+            I1~RESULT = I1~N1 - I1~N2.
+            ENDMETHOD.
+
+
+            METHOD I1~DISPLAY_DATA.
+              WRITE:/ 'THE DIFFERENCE BETWEEN 2 NUMBERS IS ', I1~RESULT.
+              ENDMETHOD.
+
+              ENDCLASS.
+
+
+              DATA: ZC1 TYPE REF TO ZCL_FIRST,
+                    ZC2 TYPE REF TO ZCL_SECOND.
+
+              START-OF-SELECTION.
+              CREATE OBJECT: ZC1,ZC2.
+
+              CALL METHOD: ZC1->I1~GET_DATA,
+              ZC1->I1~DISPLAY_DATA.
+
+              SKIP 4.
+
+              CALL METHOD: ZC2->I1~GET_DATA,
+                           ZC2->I1~DISPLAY_DATA.

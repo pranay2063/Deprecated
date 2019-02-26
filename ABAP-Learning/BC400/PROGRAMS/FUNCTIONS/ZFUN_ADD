@@ -1,0 +1,21 @@
+FUNCTION ZFUN_ADD.
+*"----------------------------------------------------------------------
+*"*"Local Interface:
+*"  IMPORTING
+*"     VALUE(N1) TYPE  I OPTIONAL
+*"     VALUE(N2) TYPE  I OPTIONAL
+*"  EXPORTING
+*"     REFERENCE(SUM) TYPE  I
+*"  EXCEPTIONS
+*"      AEXCEPTION
+*"----------------------------------------------------------------------
+
+
+IF N1 = 0 OR N2 = 0.
+  RAISE AEXCEPTION.
+  ELSE.
+    SUM = N1 + N2.
+    ENDIF.
+
+
+ENDFUNCTION.

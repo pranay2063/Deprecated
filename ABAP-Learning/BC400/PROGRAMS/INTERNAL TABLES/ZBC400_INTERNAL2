@@ -1,0 +1,19 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_INTERNAL2
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_INTERNAL2.
+
+TABLES: SPFLI.
+
+DATA: IT_SPFLI LIKE STANDARD TABLE OF SPFLI WITH HEADER LINE.
+
+SELECT * FROM SPFLI INTO TABLE IT_SPFLI.
+
+  LOOP AT IT_SPFLI.
+
+    WRITE:/ IT_SPFLI-CARRID, IT_SPFLI-CONNID.
+
+    ENDLOOP.
+

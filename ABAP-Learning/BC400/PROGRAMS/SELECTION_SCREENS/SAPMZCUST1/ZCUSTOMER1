@@ -1,0 +1,45 @@
+*&---------------------------------------------------------------------*
+*& Module Pool       SAPMZCUST1
+*&
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+
+
+INCLUDE ZSAPMZCUST1TOP                          .    " global Data
+
+* INCLUDE ZSAPMZCUST1O01                          .  " PBO-Modules
+* INCLUDE ZSAPMZCUST1I01                          .  " PAI-Modules
+* INCLUDE ZSAPMZCUST1F01                          .  " FORM-Routines
+TABLES: ZCUSTOMER1.
+
+DATA: OK_CODE LIKE SY-UCOMM.
+*&---------------------------------------------------------------------*
+*&      Module  USER_COMMAND_0100  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+AT USER-COMMAND.
+
+MODULE USER_COMMAND_0100 INPUT.
+
+CASE OK_CODE.
+
+  WHEN 'S'.
+    INSERT ZCUSTOMER1.
+
+
+    WHEN 'C'.
+      CLEAR ZCUSTOMER1.
+
+      WHEN 'F'.
+        SELECT SINGLE * FROM ZCUSTOMER1
+          WHERE KUNNR = ZCUSTOMER1-KUNNR.
+
+          WHEN 'E'.
+          LEAVE TO SCREEN 0.
+
+          ENDCASE.
+
+ENDMODULE.

@@ -1,0 +1,24 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_IF
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_IF.
+
+
+PARAMETERS: EMPNO(4) TYPE N,
+            ENAME(15),
+            JOB(15),
+           SALARY TYPE P DECIMALS 2.
+
+IF SALARY >= 8000 AND SALARY <= 10000.
+  WRITE:/ 'A GRADE OFFICER'.
+  ELSEIF SALARY LT 8000 AND SALARY GE 6000.
+    WRITE:/ 'B GRADE OFFICER'.
+    ELSEIF SALARY < 6000 AND SALARY >= 4000.
+      WRITE: 'C GRADE OFFICER'.
+      ELSEIF SALARY < 4000 AND SALARY >= 2000.
+        WRITE:/ 'D GRADE OFFICR'.
+        ELSE.
+          WRITE:/ 'INVLID SALARY'.
+          ENDIF.

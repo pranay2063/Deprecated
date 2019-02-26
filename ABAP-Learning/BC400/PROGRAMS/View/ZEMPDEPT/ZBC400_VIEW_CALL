@@ -1,0 +1,17 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_VIEW_CALL
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_VIEW_CALL.
+
+
+TABLES: ZEMPDEPT.
+
+SELECT * FROM ZEMPDEPT.
+
+
+  WRITE:/ ZEMPDEPT-DNAME, ZEMPDEPT-LOC, ZEMPDEPT-DEPTNO, ZEMPDEPT-EMPNO, ZEMPDEPT-EBNAME,
+  ZEMPDEPT-JOB, ZEMPDEPT-SALARY.
+
+  ENDSELECT.

@@ -1,0 +1,70 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_FRIENDSHIP
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_FRIENDSHIP.
+
+PARAMETERS: P_LAND1 TYPE KNA1-LAND1.
+
+DATA: BEGIN OF CUSTOMER,
+      KUNNR TYPE KNA1-KUNNR,
+      NAME1 TYPE KNA1-NAME1,
+      ORT01 TYPE KNA1-ORT01,
+      LAND1 TYPE KNA1-LAND1,
+      END OF CUSTOMER.
+
+
+      DATA: IT_CUSTOMER LIKE TABLE OF CUSTOMER,
+            WA LIKE CUSTOMER.
+
+
+      CLASS ZCL_CUSTOMER DEFINITION.
+
+        PUBLIC SECTION.
+        METHODS: DISPLAY_DATA.
+
+        ENDCLASS.
+
+        CLASS ZCL_DISPLAY DEFINITION  FRIENDS ZCL_CUSTOMER.
+
+          PRIVATE SECTION.
+          DATA: V_TXT TYPE STRING VALUE 'CUSTOMER DETAILS '.
+
+         ENDCLASS.
+
+
+         CLASS ZCL_CUSTOMER IMPLEMENTATION.
+
+           METHOD DISPLAY_DATA.
+
+             DATA: ZC TYPE REF TO ZCL_DISPLAY.
+             CREATE OBJECT ZC.
+             WRITE:/  ZC->V_TXT.
+             ULINE.
+
+             SKIP.
+
+             SELECT * FROM KNA1 INTO CORRESPONDING FIELDS OF
+               TABLE IT_CUSTOMER WHERE LAND1 EQ P_LAND1.
+
+               LOOP AT IT_CUSTOMER INTO WA.
+
+                 WRITE:/ WA-KUNNR,
+                 WA-NAME1,
+                 WA-ORT01,
+                 WA-LAND1.
+
+                 ENDLOOP.
+
+                 ENDMETHOD.
+
+                 ENDCLASS.
+
+
+                 DATA: ZC1 TYPE REF TO ZCL_CUSTOMER.
+
+                 START-OF-SELECTION.
+                 CREATE OBJECT ZC1.
+
+                 CALL METHOD ZC1->DISPLAY_dATA.

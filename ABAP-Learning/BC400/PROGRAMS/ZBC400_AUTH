@@ -1,0 +1,51 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_AUTHO
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_AUTHO.
+
+*
+DATA: WA_SCARR TYPE SCARR.
+
+PARAMETERS: P_CARRID LIKE SCARR-CARRID.
+
+
+AUTHORITY-CHECK OBJECT 'ZCARRID'
+         ID 'CARRID' FIELD P_CARRID
+         ID 'ACTVT' FIELD  '03'.
+
+
+IF SY-SUBRC <> 0.
+
+MESSAGE I888(SABAPDOCU) WITH 'YOU ARE NOT AUTHORIZED TO VIEW THIS CARRID '.
+ELSE.
+  SELECT SINGLE * FROM SCARR
+    INTO WA_SCARR
+    WHERE CARRID = P_CARRID.
+
+
+    WRITE:/ WA_SCARR-CARRID.
+
+    ENDIF.
+
+
+
+
+*DATA: WA_TSTC TYPE TSTC.
+*
+*PARAMETERS: P_TCODE TYPE TCODE.
+*
+*AUTHORITY-CHECK OBJECT 'ZTCODE'
+*         ID 'ACTVT' FIELD '03'
+*         ID 'ZTCODE' FIELD P_TCODE.
+*
+*IF SY-SUBRC <> 0.
+*message i888(SABAPDOCU) WITH 'YOU ARE NOT AUTHORIZED TO USE THIS TCODE'.
+*ELSE.
+*  SELECT SINGLE * FROM TSTC INTO WA_TSTC
+*    WHERE TCODE = P_TCODE.
+*
+*    WRITE:/ WA_TSTC-TCODE.
+*
+*ENDIF.

@@ -1,0 +1,32 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_LIKE
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_LIKE.
+
+
+DATA: EMPNO(4) TYPE N,
+      ENAME(15) TYPE C,
+      JOB(15),
+      DOJ TYPE D,
+      TOJ TYPE T,
+      SALARY TYPE P DECIMALS 2,
+      HRA LIKE SALARY,
+      DA LIKE SALARY,
+      PF LIKE SALARY,
+      LIC LIKE SALARY,
+      NETSAL TYPE I.
+
+
+EMPNO = 1.
+ENAME = 'JAMES'.
+JOB = 'MANAGER'.
+DOJ = SY-DATUM.
+TOJ = SY-UZEIT.
+SALARY = '9000.00'.
+HRA = '1500.00'.
+NETSAL = 15000.
+
+
+WRITE:/ EMPNO,ENAME,JOB,DOJ,TOJ,SALARY,HRA,NETSAL.

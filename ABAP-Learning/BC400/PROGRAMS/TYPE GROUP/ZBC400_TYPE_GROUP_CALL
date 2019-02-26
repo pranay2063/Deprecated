@@ -1,0 +1,14 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_TYPE_GROUP_CALL
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_TYPE_GROUP_CALL.
+
+TYPE-POOLS: ZEMP1.
+
+
+DATA: EMPNO1 TYPE ZEMP1_EMPNO,
+      ENAME1 TYPE ZEMP1_ENAME,
+      JOB1 TYPE ZEMP1_JOB,
+      SALARY TYPE ZEMP1_SALARY.

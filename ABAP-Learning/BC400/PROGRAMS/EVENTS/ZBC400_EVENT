@@ -1,0 +1,62 @@
+*&---------------------------------------------------------------------*
+*& Report ZBC400_CLASS_EVENT
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZBC400_CLASS_EVENT.
+
+
+CLASS ZCL_EVENT DEFINITION.
+
+  PUBLIC SECTION.
+
+  EVENTS: EVENT1.
+
+
+  METHODS: METHOD1 FOR EVENT EVENT1 OF ZCL_EVENT.
+
+  METHODS: TRIGGER.
+
+  ENDCLASS.
+
+
+
+  CLASS ZCL_EVENT IMPLEMENTATION.
+
+
+    METHOD METHOD1.
+
+      WRITE:/ 'THIS IS METHOD1 RAISED BY EVENT HANDLER '.
+
+      ENDMETHOD.
+
+
+      METHOD TRIGGER.
+
+  SKIP 5.
+
+        WRITE:/ 'THIS IS TRRIGER USED TO RAISE EVENT EVENT1 OF METHOD 1'.
+
+        RAISE EVENT EVENT1.
+
+        ENDMETHOD.
+
+
+        ENDCLASS.
+
+
+
+      START-OF-SELECTION.
+
+        DATA: ZC TYPE REF TO ZCL_EVENT.
+
+        CREATE OBJECT ZC.
+
+
+        " REGISTERING THE EVENT HANDLER METHOD
+
+        SET HANDLER ZC->METHOD1 FOR ZC.
+
+        "CALLING THE METHOD WHICH WILL RAISE THE EVENT
+
+        CALL METHOD ZC->TRIGGER.
