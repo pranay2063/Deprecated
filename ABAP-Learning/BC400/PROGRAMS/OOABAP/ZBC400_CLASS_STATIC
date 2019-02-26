@@ -33,7 +33,7 @@ CLASS ZCL_ADD_STATIC DEFINITION.
 
     METHOD GET_dATA.
 
-      RESULT = N1 + N2.
+      RESULT = N1 + N2. 
 
       ENDMETHOD.
 
