@@ -29,7 +29,7 @@
 					 //register
 					 //read user details or the tuples of the table USERS
 					 
-				   if($_POST['user_password'] == $_POST['pass2'])
+				   if($_POST['user_password'] == $_POST['pass2']) 
 				   {
 					 
 					 //$user_handle=mysqli_real_escape_string($conn,$_POST['user_handle']);
