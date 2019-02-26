@@ -35,7 +35,7 @@ TOP-OF-PAGE.
           ULINE.
           WRITe:/80 'FLIGHT DETAILS ' COLOR 4.
           ULINE.
-           WRITE:/1 'CARRID' COLOR 7,
+           WRITE:/1 'CARRID' COLOR 7, 
            20 'CONNID',
            40 'AIRPFROM',
            60 'AIRPTO',
